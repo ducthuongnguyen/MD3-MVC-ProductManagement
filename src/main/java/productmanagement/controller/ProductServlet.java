@@ -29,7 +29,17 @@ public class ProductServlet extends HttpServlet {
             case "delete":
                 deleteProduct(request,response);
                 break;
+            case "search":
+                searchProduct(request,response);
+                break;
         }
+    }
+
+    private void searchProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String name = request.getParameter("name");
+        List<Product> searchList = productService.findByName(name);
+        request.setAttribute("searchList",searchList);
+        request.getRequestDispatcher("product/search.jsp").forward(request,response);
     }
 
     private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -71,9 +81,20 @@ public class ProductServlet extends HttpServlet {
             case "delete":
                 showDeleteForm(request,response);
                 break;
+            case "search":
+                showSearchForm(request,response);
+                break;
             default:
                 showListPage(request, response);
         }
+    }
+
+    private void showSearchForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/search.jsp");
+        requestDispatcher.forward(request, response);
+//        String name = request.getParameter("name");
+//        List<Product> searchList = productService.findByName(name);
+//        request.setAttribute("searchList",searchList);
     }
 
     private void showDeleteForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

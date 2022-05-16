@@ -47,8 +47,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product findByName(String name) {
-        return null;
+    public List<Product> findByName(String name) {
+        List<Product> resultList = new ArrayList<>();
+        for (int i = 0; i < products.size(); i++) {
+            if (name.toUpperCase().contains(products.get(i).getName().toUpperCase())){
+                resultList.add(products.get(i));
+            }
+        }
+        return resultList;
     }
 
     @Override

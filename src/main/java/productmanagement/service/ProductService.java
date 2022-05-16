@@ -12,9 +12,10 @@ public interface ProductService {
     int findIndexByID(int id);
     Product findByID(int id);
 
-    Product findByName(String name);
+    List<Product> findByName(String name);
 
     void update(int id, Product product);
 
     void delete(int id);
+
 }
