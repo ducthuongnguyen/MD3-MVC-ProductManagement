@@ -50,7 +50,7 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> findByName(String name) {
         List<Product> resultList = new ArrayList<>();
         for (int i = 0; i < products.size(); i++) {
-            if (name.toUpperCase().contains(products.get(i).getName().toUpperCase())){
+            if (products.get(i).getName().toUpperCase().contains(name.toUpperCase())){
                 resultList.add(products.get(i));
             }
         }

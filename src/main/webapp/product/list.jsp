@@ -14,7 +14,10 @@
 <body>
 <h1>Product List</h1>
 <a href="/product?action=create">Create a new product</a>
-<a href="/product?action=search">Search by name</a>
+<form action="/product">
+    <input type="text" name="key" placeholder="Search by name...">
+    <button>Search</button>
+</form>
 <c:forEach items="${list}" var="product">
     <br>
     ID: ${product.id}
